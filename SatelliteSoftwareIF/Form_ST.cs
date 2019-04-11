@@ -9508,6 +9508,12 @@ namespace SatelliteSoftwareIF
             return strArray;
         }
         #endregion
+
         #endregion
+
+        private void chart_pro_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -81,7 +81,7 @@
             // 
             this.nianyueri_start_tB.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nianyueri_start_tB.Location = new System.Drawing.Point(148, 100);
-            this.nianyueri_start_tB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nianyueri_start_tB.Margin = new System.Windows.Forms.Padding(2);
             this.nianyueri_start_tB.Name = "nianyueri_start_tB";
             this.nianyueri_start_tB.Size = new System.Drawing.Size(115, 26);
             this.nianyueri_start_tB.TabIndex = 62;
@@ -92,7 +92,7 @@
             // 
             this.nianyueri_end_tB.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.nianyueri_end_tB.Location = new System.Drawing.Point(148, 143);
-            this.nianyueri_end_tB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nianyueri_end_tB.Margin = new System.Windows.Forms.Padding(2);
             this.nianyueri_end_tB.Name = "nianyueri_end_tB";
             this.nianyueri_end_tB.Size = new System.Drawing.Size(115, 26);
             this.nianyueri_end_tB.TabIndex = 63;
@@ -113,7 +113,7 @@
             // 
             this.shifen_start_tB.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.shifen_start_tB.Location = new System.Drawing.Point(283, 100);
-            this.shifen_start_tB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shifen_start_tB.Margin = new System.Windows.Forms.Padding(2);
             this.shifen_start_tB.Name = "shifen_start_tB";
             this.shifen_start_tB.Size = new System.Drawing.Size(93, 26);
             this.shifen_start_tB.TabIndex = 65;
@@ -123,7 +123,7 @@
             // 
             this.shifen_end_tB.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.shifen_end_tB.Location = new System.Drawing.Point(283, 143);
-            this.shifen_end_tB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shifen_end_tB.Margin = new System.Windows.Forms.Padding(2);
             this.shifen_end_tB.Name = "shifen_end_tB";
             this.shifen_end_tB.Size = new System.Drawing.Size(93, 26);
             this.shifen_end_tB.TabIndex = 66;
@@ -134,7 +134,7 @@
             this.button1.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.Maroon;
             this.button1.Location = new System.Drawing.Point(109, 215);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(74, 40);
             this.button1.TabIndex = 67;
@@ -147,7 +147,7 @@
             this.button2.Font = new System.Drawing.Font("SimSun", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.ForeColor = System.Drawing.Color.Maroon;
             this.button2.Location = new System.Drawing.Point(248, 215);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(74, 40);
             this.button2.TabIndex = 68;
@@ -176,7 +176,7 @@
             "探测仪",
             "辐射计"});
             this.comboBox1.Location = new System.Drawing.Point(140, 28);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(110, 20);
             this.comboBox1.TabIndex = 70;
@@ -187,7 +187,7 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(274, 28);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(130, 20);
             this.comboBox2.TabIndex = 71;
@@ -211,7 +211,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.ForeColor = System.Drawing.Color.Sienna;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SelectTime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "时间段选择";
