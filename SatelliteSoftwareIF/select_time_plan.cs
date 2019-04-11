@@ -23,11 +23,8 @@ namespace SatelliteSoftwareIF
             
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        // button 'ok'
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -39,6 +36,7 @@ namespace SatelliteSoftwareIF
             this.Dispose();
         }
 
+        //button 'cancel'
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -136,6 +134,46 @@ namespace SatelliteSoftwareIF
         }
 
         private void nianyueri_start_tB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nianyueri_end_tB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void shifen_start_tB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void shifen_end_tB_TextChanged(object sender, EventArgs e)
         {
 
         }

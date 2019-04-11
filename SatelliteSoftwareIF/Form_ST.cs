@@ -9515,5 +9515,10 @@ namespace SatelliteSoftwareIF
         {
             
         }
+
+        private void Form_ST_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

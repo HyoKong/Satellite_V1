@@ -53,6 +53,7 @@
             this.label5.Size = new System.Drawing.Size(120, 22);
             this.label5.TabIndex = 54;
             this.label5.Text = "停止时间：";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label2
             // 
@@ -64,6 +65,7 @@
             this.label2.Size = new System.Drawing.Size(120, 22);
             this.label2.TabIndex = 53;
             this.label2.Text = "开始时间：";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -75,7 +77,6 @@
             this.label1.Size = new System.Drawing.Size(98, 22);
             this.label1.TabIndex = 55;
             this.label1.Text = "年 月 日";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // nianyueri_start_tB
             // 
@@ -97,6 +98,7 @@
             this.nianyueri_end_tB.Size = new System.Drawing.Size(115, 26);
             this.nianyueri_end_tB.TabIndex = 63;
             this.nianyueri_end_tB.Text = "20171218";
+            this.nianyueri_end_tB.TextChanged += new System.EventHandler(this.nianyueri_end_tB_TextChanged);
             // 
             // label3
             // 
@@ -108,6 +110,7 @@
             this.label3.Size = new System.Drawing.Size(76, 22);
             this.label3.TabIndex = 64;
             this.label3.Text = "时  分";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // shifen_start_tB
             // 
@@ -118,6 +121,7 @@
             this.shifen_start_tB.Size = new System.Drawing.Size(93, 26);
             this.shifen_start_tB.TabIndex = 65;
             this.shifen_start_tB.Text = "08:02";
+            this.shifen_start_tB.TextChanged += new System.EventHandler(this.shifen_start_tB_TextChanged);
             // 
             // shifen_end_tB
             // 
@@ -128,6 +132,7 @@
             this.shifen_end_tB.Size = new System.Drawing.Size(93, 26);
             this.shifen_end_tB.TabIndex = 66;
             this.shifen_end_tB.Text = "09:02";
+            this.shifen_end_tB.TextChanged += new System.EventHandler(this.shifen_end_tB_TextChanged);
             // 
             // button1
             // 
@@ -166,6 +171,7 @@
             this.label4.Size = new System.Drawing.Size(125, 22);
             this.label4.TabIndex = 69;
             this.label4.Text = "诊断部件：";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // comboBox1
             // 
@@ -191,6 +197,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(130, 20);
             this.comboBox2.TabIndex = 71;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // SelectTime
             // 

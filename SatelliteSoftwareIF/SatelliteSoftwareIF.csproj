@@ -115,6 +115,18 @@
     <Compile Include="Form_ST.Designer.cs">
       <DependentUpon>Form_ST.cs</DependentUpon>
     </Compile>
+    <Compile Include="VariablePrediction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VariablePrediction.Designer.cs">
+      <DependentUpon>VariablePrediction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="variable_predict_select_time.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="variable_predict_select_time.Designer.cs">
+      <DependentUpon>variable_predict_select_time.cs</DependentUpon>
+    </Compile>
     <Compile Include="welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +167,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ST.resx">
       <DependentUpon>Form_ST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VariablePrediction.resx">
+      <DependentUpon>VariablePrediction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="variable_predict_select_time.resx">
+      <DependentUpon>variable_predict_select_time.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="welcome.resx">
       <DependentUpon>welcome.cs</DependentUpon>

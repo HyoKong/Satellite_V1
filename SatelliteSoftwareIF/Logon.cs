@@ -77,5 +77,10 @@ namespace SatelliteSoftwareIF
             this.dll_shifen_end_ST = item4;
             this.ST_flag = start;
         }
+
+        private void variablePredict_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

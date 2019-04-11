@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.help_btn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.variablePredict = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -53,7 +54,7 @@
             this.btn_fault_dignosis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_fault_dignosis.Font = new System.Drawing.Font("Microsoft YaHei", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_fault_dignosis.Location = new System.Drawing.Point(994, 187);
-            this.btn_fault_dignosis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_fault_dignosis.Margin = new System.Windows.Forms.Padding(2);
             this.btn_fault_dignosis.Name = "btn_fault_dignosis";
             this.btn_fault_dignosis.Size = new System.Drawing.Size(295, 91);
             this.btn_fault_dignosis.TabIndex = 22;
@@ -66,7 +67,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.Info;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.Location = new System.Drawing.Point(994, 303);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(295, 91);
             this.button1.TabIndex = 24;
@@ -79,7 +80,7 @@
             this.help_btn.BackColor = System.Drawing.SystemColors.Info;
             this.help_btn.Font = new System.Drawing.Font("Microsoft YaHei", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.help_btn.Location = new System.Drawing.Point(994, 442);
-            this.help_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.help_btn.Margin = new System.Windows.Forms.Padding(2);
             this.help_btn.Name = "help_btn";
             this.help_btn.Size = new System.Drawing.Size(295, 91);
             this.help_btn.TabIndex = 25;
@@ -93,13 +94,26 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.Location = new System.Drawing.Point(994, 552);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(295, 91);
             this.button3.TabIndex = 26;
             this.button3.Text = "退出";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // variablePredict
+            // 
+            this.variablePredict.BackColor = System.Drawing.SystemColors.Info;
+            this.variablePredict.Font = new System.Drawing.Font("Microsoft YaHei", 22.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.variablePredict.Location = new System.Drawing.Point(645, 380);
+            this.variablePredict.Margin = new System.Windows.Forms.Padding(2);
+            this.variablePredict.Name = "variablePredict";
+            this.variablePredict.Size = new System.Drawing.Size(295, 91);
+            this.variablePredict.TabIndex = 27;
+            this.variablePredict.Text = "变量预测";
+            this.variablePredict.UseVisualStyleBackColor = false;
+            this.variablePredict.Click += new System.EventHandler(this.variablePredict_Click);
             // 
             // Logon
             // 
@@ -108,6 +122,7 @@
             this.BackgroundImage = global::SatelliteSoftwareIF.Properties.Resources.进入界面背景;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1443, 846);
+            this.Controls.Add(this.variablePredict);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.help_btn);
             this.Controls.Add(this.button1);
@@ -129,5 +144,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button help_btn;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button variablePredict;
     }
 }
