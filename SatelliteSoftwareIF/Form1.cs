@@ -193,65 +193,66 @@ namespace SatelliteSoftwareIF
             this.chart1.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Auto;
             this.chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
             this.chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
-    
-            //##############################chart2##############################################
-            //定义图表区域
-            this.chart2.ChartAreas.Clear();
-            ChartArea chartArea2 = new ChartArea("C2");
-            this.chart2.ChartAreas.Add(chartArea2);
-            //定义存储和显示点的容器
-            this.chart2.Series.Clear();
-            Series series2 = new Series(string.Format("{0}", 动量轮1马达电流ToolStripMenuItem));
-            //Series series_max = new Series("阈值上限");
-            //Series series_min = new Series("阈值下限");
-            series2.ChartArea = "C2";
-            //series_max.ChartArea = "C2";
-            //series_min.ChartArea = "C2";
-            this.chart2.Series.Add(series2);
-            //this.chart2.Series.Add(series_max);
-            //this.chart2.Series.Add(series_min);
+            #region chart 2
+            ////##############################chart2##############################################
+            ////定义图表区域
+            //this.chart2.ChartAreas.Clear();
+            //ChartArea chartArea2 = new ChartArea("C2");
+            //this.chart2.ChartAreas.Add(chartArea2);
+            ////定义存储和显示点的容器
+            //this.chart2.Series.Clear();
+            //Series series2 = new Series(string.Format("{0}", 动量轮1马达电流ToolStripMenuItem));
+            ////Series series_max = new Series("阈值上限");
+            ////Series series_min = new Series("阈值下限");
+            //series2.ChartArea = "C2";
+            ////series_max.ChartArea = "C2";
+            ////series_min.ChartArea = "C2";
+            //this.chart2.Series.Add(series2);
+            ////this.chart2.Series.Add(series_max);
+            ////this.chart2.Series.Add(series_min);
 
-            //设置图表显示样式
-            //this.chart2.ChartAreas[0].AxisY.Minimum = 0;
-            //this.chart2.ChartAreas[0].AxisY.Maximum = 0.4;
-            this.chart2.ChartAreas[0].AxisX.Interval = 5;
-            this.chart2.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            this.chart2.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            this.chart2.ChartAreas[0].AxisX.Title = "采样点";
-            this.chart2.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Blue;
-            this.chart2.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮1马达电流ToolStripMenuItem);
-            this.chart2.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Blue;
-            this.chart2.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            //this.chart2.ChartAreas[0].AxisX.IsMarginVisible = false;//横坐标显示完整
-            //设置标题
-            this.chart2.Titles.Clear();
-            this.chart2.Titles.Add("S02");
-            this.chart2.Titles[0].Text = "动量轮1马达电流";
-            this.chart2.Titles[0].ForeColor = Color.RoyalBlue;
-            this.chart2.Titles[0].Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            //设置图表显示样式
-            this.chart2.Series[0].Color = Color.Red;
-            if (dll_c1 == 1)
-            {
-                this.chart2.Titles[0].Text = string.Format("{0}", 动量轮1马达电流ToolStripMenuItem);
-                this.chart2.Series[0].ChartType = SeriesChartType.Line;
-            }
-            this.chart2.Series[0].Points.Clear();
-            //this.chart2.Series[1].ChartType = SeriesChartType.Line;
-            //this.chart2.Series[2].ChartType = SeriesChartType.Line;
-            //this.chart2.Series[1].Color = Color.Lime;
-            //this.chart2.Series[2].Color = Color.Lime;
-            //this.chart2.Series[1].BorderWidth = 2;
-            //this.chart2.Series[2].BorderWidth = 2;
+            ////设置图表显示样式
+            ////this.chart2.ChartAreas[0].AxisY.Minimum = 0;
+            ////this.chart2.ChartAreas[0].AxisY.Maximum = 0.4;
+            //this.chart2.ChartAreas[0].AxisX.Interval = 5;
+            //this.chart2.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            //this.chart2.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            //this.chart2.ChartAreas[0].AxisX.Title = "采样点";
+            //this.chart2.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Blue;
+            //this.chart2.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮1马达电流ToolStripMenuItem);
+            //this.chart2.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Blue;
+            //this.chart2.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            ////this.chart2.ChartAreas[0].AxisX.IsMarginVisible = false;//横坐标显示完整
+            ////设置标题
+            //this.chart2.Titles.Clear();
+            //this.chart2.Titles.Add("S02");
+            //this.chart2.Titles[0].Text = "动量轮1马达电流";
+            //this.chart2.Titles[0].ForeColor = Color.RoyalBlue;
+            //this.chart2.Titles[0].Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            ////设置图表显示样式
+            //this.chart2.Series[0].Color = Color.Red;
+            //if (dll_c1 == 1)
+            //{
+            //    this.chart2.Titles[0].Text = string.Format("{0}", 动量轮1马达电流ToolStripMenuItem);
+            //    this.chart2.Series[0].ChartType = SeriesChartType.Line;
+            //}
+            //this.chart2.Series[0].Points.Clear();
+            ////this.chart2.Series[1].ChartType = SeriesChartType.Line;
+            ////this.chart2.Series[2].ChartType = SeriesChartType.Line;
+            ////this.chart2.Series[1].Color = Color.Lime;
+            ////this.chart2.Series[2].Color = Color.Lime;
+            ////this.chart2.Series[1].BorderWidth = 2;
+            ////this.chart2.Series[2].BorderWidth = 2;
 
-            //启用X游标，以支持局部区域选择放大
-            this.chart2.ChartAreas[0].CursorX.IsUserEnabled = true;
-            this.chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
-            this.chart2.ChartAreas[0].CursorX.LineColor = Color.Pink;
-            this.chart2.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Auto;
-            this.chart2.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
-            this.chart2.ChartAreas[0].AxisY.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
+            ////启用X游标，以支持局部区域选择放大
+            //this.chart2.ChartAreas[0].CursorX.IsUserEnabled = true;
+            //this.chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            //this.chart2.ChartAreas[0].CursorX.LineColor = Color.Pink;
+            //this.chart2.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Auto;
+            //this.chart2.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
+            //this.chart2.ChartAreas[0].AxisY.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
+            #endregion
         }
 
         /// <summary>

@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.开始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.开启ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,11 +83,9 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.abn_state_lstbox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.btn_abnstate_cle = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -106,12 +101,10 @@
             this.label_dy = new System.Windows.Forms.Label();
             this.label_tcy = new System.Windows.Forms.Label();
             this.label_fsj = new System.Windows.Forms.Label();
-            this.label_bujian = new System.Windows.Forms.Label();
             this.label_shijian = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -492,31 +485,31 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea1.AxisX.Title = "guzhzhzh";
-            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Blue;
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.DodgerBlue;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Alignment = System.Drawing.StringAlignment.Far;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.ForeColor = System.Drawing.Color.DimGray;
-            legend1.MaximumAutoSize = 20F;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(28, 135);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            chartArea2.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea2.AxisX.Title = "guzhzhzh";
+            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.Blue;
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.DodgerBlue;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Far;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.ForeColor = System.Drawing.Color.DimGray;
+            legend2.MaximumAutoSize = 20F;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(11, 135);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series_yuzhi";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(938, 274);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series_yuzhi";
+            this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(864, 274);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             this.chart1.SelectionRangeChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.CursorEventArgs>(this.chart1_SelectionRangeChanged);
@@ -529,7 +522,7 @@
             this.abn_state_lstbox.FormattingEnabled = true;
             this.abn_state_lstbox.ItemHeight = 22;
             this.abn_state_lstbox.Location = new System.Drawing.Point(1011, 257);
-            this.abn_state_lstbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.abn_state_lstbox.Margin = new System.Windows.Forms.Padding(2);
             this.abn_state_lstbox.Name = "abn_state_lstbox";
             this.abn_state_lstbox.Size = new System.Drawing.Size(378, 510);
             this.abn_state_lstbox.TabIndex = 4;
@@ -545,17 +538,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "时间：";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(1005, 135);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(274, 42);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "异常状态信息显示";
-            // 
             // btn_abnstate_cle
             // 
             this.btn_abnstate_cle.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -563,7 +545,7 @@
             this.btn_abnstate_cle.Font = new System.Drawing.Font("SimSun", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_abnstate_cle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btn_abnstate_cle.Location = new System.Drawing.Point(1155, 186);
-            this.btn_abnstate_cle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_abnstate_cle.Margin = new System.Windows.Forms.Padding(2);
             this.btn_abnstate_cle.Name = "btn_abnstate_cle";
             this.btn_abnstate_cle.Size = new System.Drawing.Size(117, 58);
             this.btn_abnstate_cle.TabIndex = 12;
@@ -576,7 +558,7 @@
             this.btn_save.BackColor = System.Drawing.SystemColors.Info;
             this.btn_save.Font = new System.Drawing.Font("SimSun", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_save.Location = new System.Drawing.Point(1012, 186);
-            this.btn_save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_save.Margin = new System.Windows.Forms.Padding(2);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(118, 58);
             this.btn_save.TabIndex = 13;
@@ -588,31 +570,6 @@
             // 
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // chart2
-            // 
-            this.chart2.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea2.AxisX.Title = "guzh";
-            chartArea2.AxisY.Title = "shijian";
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Far;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(50, 469);
-            this.chart2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chart2.Name = "chart2";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series2";
-            this.chart2.Series.Add(series3);
-            this.chart2.Size = new System.Drawing.Size(916, 310);
-            this.chart2.TabIndex = 23;
-            this.chart2.Text = "chart2";
-            this.chart2.SelectionRangeChanged += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.CursorEventArgs>(this.chart2_SelectionRangeChanged);
-            this.chart2.AxisScrollBarClicked += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ScrollBarEventArgs>(this.chart2_AxisScrollBarClicked);
             // 
             // comboBox1
             // 
@@ -679,7 +636,7 @@
             this.dll_rb.Font = new System.Drawing.Font("SimHei", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dll_rb.ForeColor = System.Drawing.Color.Navy;
             this.dll_rb.Location = new System.Drawing.Point(58, 98);
-            this.dll_rb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dll_rb.Margin = new System.Windows.Forms.Padding(2);
             this.dll_rb.Name = "dll_rb";
             this.dll_rb.Size = new System.Drawing.Size(124, 34);
             this.dll_rb.TabIndex = 33;
@@ -705,7 +662,7 @@
             this.dy_rb.Font = new System.Drawing.Font("SimHei", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dy_rb.ForeColor = System.Drawing.Color.Navy;
             this.dy_rb.Location = new System.Drawing.Point(194, 98);
-            this.dy_rb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dy_rb.Margin = new System.Windows.Forms.Padding(2);
             this.dy_rb.Name = "dy_rb";
             this.dy_rb.Size = new System.Drawing.Size(93, 34);
             this.dy_rb.TabIndex = 38;
@@ -718,7 +675,7 @@
             this.tcy_rb.Font = new System.Drawing.Font("SimHei", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tcy_rb.ForeColor = System.Drawing.Color.Navy;
             this.tcy_rb.Location = new System.Drawing.Point(298, 98);
-            this.tcy_rb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tcy_rb.Margin = new System.Windows.Forms.Padding(2);
             this.tcy_rb.Name = "tcy_rb";
             this.tcy_rb.Size = new System.Drawing.Size(124, 34);
             this.tcy_rb.TabIndex = 39;
@@ -731,7 +688,7 @@
             this.fsj_rb.Font = new System.Drawing.Font("SimHei", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.fsj_rb.ForeColor = System.Drawing.Color.Navy;
             this.fsj_rb.Location = new System.Drawing.Point(438, 98);
-            this.fsj_rb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fsj_rb.Margin = new System.Windows.Forms.Padding(2);
             this.fsj_rb.Name = "fsj_rb";
             this.fsj_rb.Size = new System.Drawing.Size(124, 34);
             this.fsj_rb.TabIndex = 40;
@@ -787,18 +744,6 @@
             this.label_fsj.TabIndex = 44;
             this.label_fsj.Text = "正常";
             // 
-            // label_bujian
-            // 
-            this.label_bujian.AutoSize = true;
-            this.label_bujian.Font = new System.Drawing.Font("SimSun", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_bujian.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label_bujian.Location = new System.Drawing.Point(54, 461);
-            this.label_bujian.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label_bujian.Name = "label_bujian";
-            this.label_bujian.Size = new System.Drawing.Size(323, 30);
-            this.label_bujian.TabIndex = 45;
-            this.label_bujian.Text = "目前显示的变量趋势：";
-            // 
             // label_shijian
             // 
             this.label_shijian.AutoSize = true;
@@ -817,7 +762,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("SimSun", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.Location = new System.Drawing.Point(1248, 49);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 58);
             this.button1.TabIndex = 47;
@@ -834,7 +779,6 @@
             this.ClientSize = new System.Drawing.Size(1443, 846);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label_shijian);
-            this.Controls.Add(this.label_bujian);
             this.Controls.Add(this.label_fsj);
             this.Controls.Add(this.label_tcy);
             this.Controls.Add(this.label_dy);
@@ -849,16 +793,14 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.chart2);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.btn_abnstate_cle);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.abn_state_lstbox);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SatelliteSoftware";
@@ -867,7 +809,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -881,7 +822,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ListBox abn_state_lstbox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_abnstate_cle;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.ToolStripMenuItem 参数配置ToolStripMenuItem;
@@ -903,7 +843,6 @@
         private System.Windows.Forms.ToolStripMenuItem 文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 故障诊断结果文件ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 趋势监测ToolStripMenuItem;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ToolStripMenuItem 选择时段监测ToolStripMenuItem;
@@ -929,7 +868,6 @@
         private System.Windows.Forms.Label label_dy;
         private System.Windows.Forms.Label label_tcy;
         private System.Windows.Forms.Label label_fsj;
-        private System.Windows.Forms.Label label_bujian;
         private System.Windows.Forms.Label label_shijian;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem 辐射计ToolStripMenuItem;
