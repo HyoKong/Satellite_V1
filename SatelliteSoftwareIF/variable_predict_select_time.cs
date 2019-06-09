@@ -25,9 +25,9 @@ namespace SatelliteSoftwareIF
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            VariablePrediction variablePrediction = new VariablePrediction();
-            variablePrediction.ShowDialog();
-            this.Dispose();
+            //VariablePrediction variablePrediction = new VariablePrediction();
+            //variablePrediction.ShowDialog();
+            //this.Dispose();
         }
 
         // initialize Variables combo box according to different parts.

@@ -21,9 +21,11 @@ namespace SatelliteSoftwareIF
 {
     public partial class Form1 : Form
     {
-        private Queue<double> dataQueue_prob = new Queue<double>(100);      //监测故障概率
+        private Queue<double> dll_dataQueue_prob = new Queue<double>(100);      //监测故障概率
         private Queue<double> dataQueue_data = new Queue<double>(100);     //监测数据
-        private Queue<string> timeQueue = new Queue<string>(100);          //横坐标时间
+        private Queue<string> dll_timeQueue = new Queue<string>(100);          //横坐标时间
+        private Queue<double> dataQueue_prob = new Queue<double>(100);
+        private Queue<string> timeQueue = new Queue<string>(100);
         private Queue<double> dataQueue_prob_ST = new Queue<double>(100);   //选择时间段内的故障概率
         private Queue<double> dataQueue_data_ST = new Queue<double>(100);  //选择时间段内监测数据
        
@@ -99,10 +101,12 @@ namespace SatelliteSoftwareIF
             comboBox1.Items.AddRange(new object[] { "OverView", "Follow" });
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.SelectedIndex = 0;
-            //################################chart2#################################
+
+            //################################chart2###############################
             chart2.Series[0].ChartType = SeriesChartType.Line;
             chart2.Series[0].IsValueShownAsLabel = false;//图上不显示数据点的值
             chart2.Series[0].ToolTip = "#VALX,#VALY";//鼠标停留在数据点上，显示XY值
+            chart2.Series[0].Label = "#VAL";
 
             //启用X游标，以支持局部区域选择放大
             chart2.ChartAreas[0].CursorY.IsUserEnabled = true;
@@ -115,6 +119,24 @@ namespace SatelliteSoftwareIF
             comboBox2.Items.AddRange(new object[] { "OverView", "Follow" });
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.SelectedIndex = 0;
+
+
+            //################################chart2#################################
+            //chart2.Series[0].ChartType = SeriesChartType.Line;
+            //chart2.Series[0].IsValueShownAsLabel = false;//图上不显示数据点的值
+            //chart2.Series[0].ToolTip = "#VALX,#VALY";//鼠标停留在数据点上，显示XY值
+
+            ////启用X游标，以支持局部区域选择放大
+            //chart2.ChartAreas[0].CursorY.IsUserEnabled = true;
+            //chart2.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+            //chart2.ChartAreas[0].CursorY.LineColor = Color.Pink;
+            //chart2.ChartAreas[0].CursorY.IntervalType = DateTimeIntervalType.Auto;
+            //chart2.ChartAreas[0].AxisY.ScaleView.Zoomable = false;
+            //chart2.ChartAreas[0].AxisY.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
+
+            //comboBox2.Items.AddRange(new object[] { "OverView", "Follow" });
+            //comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            //comboBox2.SelectedIndex = 0;
             //界面打开就开始运行程序
             InitChart();
             this.timer1.Start();
@@ -131,7 +153,7 @@ namespace SatelliteSoftwareIF
             //
             label_tcy.Text = string.Format("正常");
             label_tcy.ForeColor = System.Drawing.Color.Lime;
-            //
+            
             label_fsj.Text = string.Format("正常");
             label_fsj.ForeColor = System.Drawing.Color.Lime;
             //
@@ -163,7 +185,7 @@ namespace SatelliteSoftwareIF
             this.chart1.ChartAreas[0].AxisY.Minimum = 0;
             this.chart1.ChartAreas[0].AxisY.Maximum = 1;
             this.chart1.ChartAreas[0].AxisY.LabelStyle.Format = "0%";
-            this.chart1.ChartAreas[0].AxisX.Interval = 5;
+            this.chart1.ChartAreas[0].AxisX.Interval = 20;
             this.chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
             this.chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
             this.chart1.ChartAreas[0].AxisX.Title = "采样点";
@@ -193,6 +215,56 @@ namespace SatelliteSoftwareIF
             this.chart1.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Auto;
             this.chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
             this.chart1.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
+
+            //##############################chart2##############################################
+            //定义图表区域
+            this.chart2.ChartAreas.Clear();
+            ChartArea chartArea2 = new ChartArea("C2");
+            this.chart2.ChartAreas.Add(chartArea2);
+            //定义存储和显示点的容器
+            this.chart2.Series.Clear();
+            Series series2 = new Series("故障概率曲线");
+            //Series series_yuzhi = new Series("故障警戒线");
+            series2.ChartArea = "C2";
+            //series_yuzhi.ChartArea = "C1";
+            this.chart2.Series.Add(series2);
+            //this.chart1.Series.Add(series_yuzhi);
+
+
+            //设置图表显示样式
+            this.chart2.ChartAreas[0].AxisY.Minimum = 0;
+            this.chart2.ChartAreas[0].AxisY.Maximum = 1;
+            this.chart2.ChartAreas[0].AxisY.LabelStyle.Format = "0%";
+            this.chart2.ChartAreas[0].AxisX.Interval = 5;
+            this.chart2.ChartAreas[0].AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            this.chart2.ChartAreas[0].AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            this.chart2.ChartAreas[0].AxisX.Title = "采样点";
+            this.chart2.ChartAreas[0].AxisX.TitleForeColor = System.Drawing.Color.Red;
+            this.chart2.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chart2.ChartAreas[0].AxisY.Title = "故障概率";
+            this.chart2.ChartAreas[0].AxisY.TitleForeColor = System.Drawing.Color.Red;
+            this.chart2.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            //设置标题
+            this.chart2.Titles.Clear();
+            this.chart2.Titles.Add("S01");
+            this.chart2.Titles[0].Text = "动量轮故障监测结果显示";
+            this.chart2.Titles[0].ForeColor = Color.RoyalBlue;
+            this.chart2.Titles[0].Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+
+            //设置图表显示样式
+            this.chart2.Series[0].Color = Color.Red;
+            this.chart2.Series[0].Points.Clear();
+            //this.chart1.ChartAreas[0].AxisX.Title.Text = "shijian";
+            //this.chart1.Series[1].ChartType = SeriesChartType.Line;
+            //this.chart1.Series[1].Color = Color.Red;
+
+            //启用X游标，以支持局部区域选择放大
+            this.chart2.ChartAreas[0].CursorX.IsUserEnabled = true;
+            this.chart2.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            this.chart2.ChartAreas[0].CursorX.LineColor = Color.Pink;
+            this.chart2.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Auto;
+            this.chart2.ChartAreas[0].AxisX.ScaleView.Zoomable = false;
+            this.chart2.ChartAreas[0].AxisX.ScrollBar.ButtonStyle = ScrollBarButtonStyles.All;//启用X轴滚动条按钮
             #region chart 2
             ////##############################chart2##############################################
             ////定义图表区域
@@ -277,23 +349,32 @@ namespace SatelliteSoftwareIF
         
             UpdateQueueValue();
             this.chart1.Series[0].Points.Clear();
+            for (int i = 0; i < dll_dataQueue_prob.Count; i++)
+            {
+                //this.chart1.Series[0].Points.AddXY((i + 1), dataQueue_prob.ElementAt(i));
+                this.chart1.Series[0].Points.AddXY(dll_timeQueue.ElementAt(i), dll_dataQueue_prob.ElementAt(i));
+                //this.chart2.Series[0].Points.AddXY(timeQueue.ElementAt(i), dataQueue_prob.ElementAt(i));
+                //this.chart1.Series[0].Color = Color.Red;
+                //this.chart1.Series[1].Points.AddXY(timeQueue.ElementAt(i),0.5);
+            }
+            this.chart2.Series[0].Points.Clear();
             for (int i = 0; i < dataQueue_prob.Count; i++)
             {
                 //this.chart1.Series[0].Points.AddXY((i + 1), dataQueue_prob.ElementAt(i));
-                this.chart1.Series[0].Points.AddXY(timeQueue.ElementAt(i), dataQueue_prob.ElementAt(i));
+                this.chart2.Series[0].Points.AddXY(timeQueue.ElementAt(i), dataQueue_prob.ElementAt(i));
                 //this.chart1.Series[0].Color = Color.Red;
                 //this.chart1.Series[1].Points.AddXY(timeQueue.ElementAt(i),0.5);
             }
             //####################chart2################################
-            this.chart2.Series[0].Points.Clear();
-            for (int i = 0; i < dataQueue_data.Count; i++)
-            {
-                //this.chart2.Series[0].Points.AddXY((i + 1), dataQueue_data.ElementAt(i));
-                this.chart2.Series[0].Points.AddXY(timeQueue.ElementAt(i), dataQueue_data.ElementAt(i));
-                this.chart2.Series[0].Color = Color.Blue;
-                //this.chart2.Series[1].Points.AddXY(timeQueue.ElementAt(i), 2.0);
-                //this.chart2.Series[2].Points.AddXY(timeQueue.ElementAt(i), -2.0);
-            }
+            //this.chart2.Series[0].Points.Clear();
+            //for (int i = 0; i < dataQueue_data.Count; i++)
+            //{
+            //    //this.chart2.Series[0].Points.AddXY((i + 1), dataQueue_data.ElementAt(i));
+            //    this.chart2.Series[0].Points.AddXY(timeQueue.ElementAt(i), dataQueue_data.ElementAt(i));
+            //    this.chart2.Series[0].Color = Color.Blue;
+            //    //this.chart2.Series[1].Points.AddXY(timeQueue.ElementAt(i), 2.0);
+            //    //this.chart2.Series[2].Points.AddXY(timeQueue.ElementAt(i), -2.0);
+            //}
 
             //chart1启用局部放大
             if (flag1)
@@ -332,38 +413,38 @@ namespace SatelliteSoftwareIF
                 return;
             }
             //未启动局部放大##########chart2############
-            if (comboBox2.SelectedItem.ToString() == "OverView")
-            {
-                chart2.ChartAreas[0].AxisX.ScaleView.Position = 1;
-                if (dataQueue_data.Count > 10)
-                {
-                    double max = chart2.ChartAreas[0].AxisX.Maximum;
-                    max = (dataQueue_data.Count / 10 + 1) * 10;
-                    chart2.ChartAreas[0].AxisX.Interval = max / 10;
-                }
-                chart2.ChartAreas[0].AxisX.ScaleView.Size = dataQueue_data.Count * 1.1;
-            }
-            if (comboBox2.SelectedItem.ToString() == "Follow")
-            {
-                chart2.ChartAreas[0].AxisX.Interval = 1D;
-                chart2.ChartAreas[0].AxisX.ScaleView.Size = 8D;
-                if (dataQueue_data.Count <= chart2.ChartAreas[0].AxisX.ScaleView.Size)
-                    chart2.ChartAreas[0].AxisX.ScaleView.Position = 1;
-                else
-                    chart2.ChartAreas[0].AxisX.ScaleView.Position = dataQueue_data.Count - chart2.ChartAreas[0].AxisX.ScaleView.Size;
-            }
+            //if (comboBox2.SelectedItem.ToString() == "OverView")
+            //{
+            //    chart2.ChartAreas[0].AxisX.ScaleView.Position = 1;
+            //    if (dataQueue_data.Count > 10)
+            //    {
+            //        double max = chart2.ChartAreas[0].AxisX.Maximum;
+            //        max = (dataQueue_data.Count / 10 + 1) * 10;
+            //        chart2.ChartAreas[0].AxisX.Interval = max / 10;
+            //    }
+            //    chart2.ChartAreas[0].AxisX.ScaleView.Size = dataQueue_data.Count * 1.1;
+            //}
+            //if (comboBox2.SelectedItem.ToString() == "Follow")
+            //{
+            //    chart2.ChartAreas[0].AxisX.Interval = 1D;
+            //    chart2.ChartAreas[0].AxisX.ScaleView.Size = 8D;
+            //    if (dataQueue_data.Count <= chart2.ChartAreas[0].AxisX.ScaleView.Size)
+            //        chart2.ChartAreas[0].AxisX.ScaleView.Position = 1;
+            //    else
+            //        chart2.ChartAreas[0].AxisX.ScaleView.Position = dataQueue_data.Count - chart2.ChartAreas[0].AxisX.ScaleView.Size;
+            //}
         }
 
         //更新队列中的值
         private void UpdateQueueValue()
         {
 
-            if (dataQueue_prob.Count > 100)
+            if (dll_dataQueue_prob.Count > 100)
             {
                 //先出列
                 for (int i = 0; i < num; i++)
                 {
-                    dataQueue_prob.Dequeue();
+                    dll_dataQueue_prob.Dequeue();
                 }
             }
             if (dataQueue_data.Count > 100)
@@ -374,16 +455,33 @@ namespace SatelliteSoftwareIF
                     dataQueue_data.Dequeue();
                 }
             }
-            if (timeQueue.Count > 100) 
+            if (dll_timeQueue.Count > 100) 
             {
                 for (int i = 0; i < num; i++) 
+                {
+                    dll_timeQueue.Dequeue();
+                }
+            }
+
+            if (dataQueue_prob.Count > 100)
+            {
+                //先出列
+                for (int i = 0; i < num; i++)
+                {
+                    dataQueue_prob.Dequeue();
+                }
+            }
+            if (timeQueue.Count > 100)
+            {
+                for (int i = 0; i < num; i++)
                 {
                     timeQueue.Dequeue();
                 }
             }
 
             //动量轮故障监测按钮按下后的数值更新
-            if (dll_rb.Checked)
+            //if (dll_rb.Checked)
+            if (true)
             {
                 for (int t = 0; t < dll_file.Length; t++)
                 {
@@ -427,17 +525,17 @@ namespace SatelliteSoftwareIF
 
                                 string time_X = line_sp[0];
                                 time_X.Replace(" ", "");
-                                timeQueue.Enqueue(time_X.Substring(9, 8));
+                                dll_timeQueue.Enqueue(time_X.Substring(9, 8));
 
                                 double a = TEST.Class1.test_dll(value_nums);
-                                dataQueue_prob.Enqueue(Math.Round(a, 4));
+                                dll_dataQueue_prob.Enqueue(Math.Round(a, 4));
                                 //读取“动量轮1马达电流”的数据并判断是否故障
                                 if (qushi_flag == "动量轮1马达电流")
                                 {
                                     dataQueue_data.Enqueue(Math.Round(value_nums[0], 1));//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮1马达电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮1马达电流 (-2A,2A)";
-                                    this.chart2.Series[0].LegendText = "动量轮1马达电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮1马达电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮1马达电流 (-2A,2A)";
+                                    //this.chart2.Series[0].LegendText = "动量轮1马达电流";
 
                                     if (a >= 0.5)
                                     {
@@ -489,9 +587,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮2马达电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[1]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮2马达电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮2马达电流 (-2A,2A)";
-                                    this.chart2.Series[0].LegendText = "动量轮2马达电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮2马达电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮2马达电流 (-2A,2A)";
+                                    //this.chart2.Series[0].LegendText = "动量轮2马达电流";
 
                                     if (a >= 0.5)
                                     {
@@ -543,9 +641,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮4马达电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[2]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮4马达电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮4马达电流 (-2A,2A)";
-                                    this.chart2.Series[0].LegendText = "动量轮4马达电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮4马达电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮4马达电流 (-2A,2A)";
+                                    //this.chart2.Series[0].LegendText = "动量轮4马达电流";
 
                                     if (a >= 0.5)
                                     {
@@ -597,9 +695,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮1轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[4]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮1轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮1轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮1轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮1轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮1轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮1轴温";
 
                                     if (a >= 0.5)
                                     {
@@ -651,9 +749,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮2轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[5]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮2轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮2轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮2轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 动量轮2轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮2轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮2轴温";
 
                                     if (a >= 0.5)
                                     {
@@ -705,9 +803,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮3轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[6]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮3轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮3轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮3轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮3轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮3轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮3轴温";
 
                                     if (a >= 0.5)
                                     {
@@ -759,9 +857,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮4轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[7]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮4轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮4轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮4轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮4轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮4轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮4轴温";
 
                                     if (a >= 0.5)
                                     {
@@ -813,9 +911,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮5轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[8]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮5轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮5轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮5轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮5轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮5轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮5轴温";
 
                                     if (a >= 0.5)
                                     {
@@ -867,9 +965,9 @@ namespace SatelliteSoftwareIF
                                 else if (qushi_flag == "动量轮6轴温")
                                 {
                                     dataQueue_data.Enqueue(value_nums[9]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮6轴温ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "动量轮6轴温 (-5°C,45°C)";
-                                    this.chart2.Series[0].LegendText = "动量轮6轴温";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/度", 动量轮6轴温ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "动量轮6轴温 (-5°C,45°C)";
+                                    //this.chart2.Series[0].LegendText = "动量轮6轴温;
 
                                     if (a >= 0.5)
                                     {
@@ -933,14 +1031,15 @@ namespace SatelliteSoftwareIF
             }
 
             //辐射计故障监测按钮按下后的数值更新
-            if (fsj_rb.Checked)
+            //if (fsj_rb.Checked)
+            if(true)
             {
                 //qushi_flag = "辐射计东西总电流";
                 //chart1的改变
-                this.chart1.Titles[0].Text = "辐射计故障监测结果显示";
+                this.chart2.Titles[0].Text = "辐射计故障监测结果显示";
                 //chart2的改变
-                this.chart2.Titles[0].Text = "辐射计东西总电流";
-                this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计东西总电流ToolStripMenuItem);
+                //this.chart2.Titles[0].Text = "辐射计东西总电流";
+                //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计东西总电流ToolStripMenuItem);
                 for (int t = 0; t < fsj_file.Length; t++)
                 {
                     using (StreamReader reader = new StreamReader("./读取多个文件实验/辐射计/" + fsj_file[t]))
@@ -964,9 +1063,9 @@ namespace SatelliteSoftwareIF
                                 if (fsj_qushi_flag == "辐射计东西总电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[0]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计东西总电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "辐射计东西总电流 (-2A,2A)";
-                                    this.chart2.Series[0].LegendText = "辐射计东西总电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计东西总电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "辐射计东西总电流 (-2A,2A)";
+                                    //this.chart2.Series[0].LegendText = "辐射计东西总电流";
                                     if (a >= 0.5) 
                                     {
                                         label_fsj.Text = string.Format("故障");
@@ -985,9 +1084,9 @@ namespace SatelliteSoftwareIF
                                 if (fsj_qushi_flag == "辐射计南北总电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[1]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计南北总电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "辐射计南北总电流 (-2A,2A)";
-                                    this.chart2.Series[0].LegendText = "辐射计南北总电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 辐射计南北总电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "辐射计南北总电流 (-2A,2A)";
+                                    //this.chart2.Series[0].LegendText = "辐射计南北总电流";
                                     if (a >= 0.5)
                                     {
                                         label_fsj.Text = string.Format("故障");
@@ -1017,8 +1116,8 @@ namespace SatelliteSoftwareIF
                 //chart1的改变
                 this.chart1.Titles[0].Text = "探测仪故障监测结果显示";
                 //chart2的改变
-                this.chart2.Titles[0].Text = "探测仪东西电机A相电流";
-                this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机A相电流ToolStripMenuItem);
+                //this.chart2.Titles[0].Text = "探测仪东西电机A相电流";
+                //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机A相电流ToolStripMenuItem);
                 for (int t = 0; t < tcy_file.Length; t++)
                 {
                     using (StreamReader reader = new StreamReader("./读取多个文件实验/探测仪/" + tcy_file[t]))
@@ -1050,9 +1149,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪东西电机A相电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[0]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机A相电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪东西电机A相电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪东西电机A相电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机A相电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪东西电机A相电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪东西电机A相电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1087,9 +1186,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪东西电机B相电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[1]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机B相电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪东西电机B相电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪东西电机B相电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机B相电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪东西电机B相电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪东西电机B相电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1124,9 +1223,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪东西电机总电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[2]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机总电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪东西电机总电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪东西电机总电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪东西电机总电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪东西电机总电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪东西电机总电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1161,9 +1260,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪南北电机A相电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[3]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机A相电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪南北电机A相电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪南北电机A相电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机A相电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪南北电机A相电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪南北电机A相电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1198,9 +1297,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪南北电机B相电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[4]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机B相电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪南北电机B相电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪南北电机B相电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机B相电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪南北电机B相电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪南北电机B相电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1235,9 +1334,9 @@ namespace SatelliteSoftwareIF
                                 if (tcy_qushi_flag == "探测仪南北电机总电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[5]);//读取动量轮某一列数据
-                                    this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机总电流ToolStripMenuItem);
-                                    this.chart2.Titles[0].Text = "探测仪南北电机总电流 (-0.6A,0.6A)";
-                                    this.chart2.Series[0].LegendText = "探测仪南北电机总电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/A", 探测仪南北电机总电流ToolStripMenuItem);
+                                    //this.chart2.Titles[0].Text = "探测仪南北电机总电流 (-0.6A,0.6A)";
+                                    //this.chart2.Series[0].LegendText = "探测仪南北电机总电流";
                                     if (a >= 0.5)
                                     {
                                         label_tcy.Text = string.Format("故障");
@@ -1283,8 +1382,8 @@ namespace SatelliteSoftwareIF
                 //chart1的改变
                 this.chart1.Titles[0].Text = "电源故障监测结果显示";
                 //chart2的改变
-                this.chart2.Titles[0].Text = "电源";
-                this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/V", 母线28V电压ToolStripMenuItem);
+                //this.chart2.Titles[0].Text = "电源";
+                //this.chart2.ChartAreas[0].AxisY.Title = string.Format("{0}/V", 母线28V电压ToolStripMenuItem);
                 for (int t = 0; t < dy_file.Length; t++)
                 {
                     using (StreamReader reader = new StreamReader("./读取多个文件实验/电源/" + dy_file[t]))
@@ -1357,9 +1456,9 @@ namespace SatelliteSoftwareIF
                                 if (dy_qushi_flag == "28V母线电压")
                                 {
                                     dataQueue_data.Enqueue(value_nums[0]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "28V母线电压/V";
-                                    this.chart2.Titles[0].Text = "28V母线电压 (27.5A,28.5A)";
-                                    this.chart2.Series[0].LegendText = "28V母线电压";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "28V母线电压/V";
+                                    //this.chart2.Titles[0].Text = "28V母线电压 (27.5A,28.5A)";
+                                    //this.chart2.Series[0].LegendText = "28V母线电压";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -1566,9 +1665,9 @@ namespace SatelliteSoftwareIF
                                 else if (dy_qushi_flag == "28V负载电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[1]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "28V负载电流/A";
-                                    this.chart2.Titles[0].Text = "28V负载电流 (-0.5A,43A)";
-                                    this.chart2.Series[0].LegendText = "28V负载电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "28V负载电流/A";
+                                    //this.chart2.Titles[0].Text = "28V负载电流 (-0.5A,43A)";
+                                    //this.chart2.Series[0].LegendText = "28V负载电流";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -1775,9 +1874,9 @@ namespace SatelliteSoftwareIF
                                 else if (dy_qushi_flag == "42V母线电压")
                                 {
                                     dataQueue_data.Enqueue(value_nums[2]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "42V母线电压/V";
-                                    this.chart2.Titles[0].Text = "42V母线电压  (41A,43A)";
-                                    this.chart2.Series[0].LegendText = "42V母线电压";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "42V母线电压/V";
+                                    //this.chart2.Titles[0].Text = "42V母线电压  (41A,43A)";
+                                    //this.chart2.Series[0].LegendText = "42V母线电压";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -1984,9 +2083,9 @@ namespace SatelliteSoftwareIF
                                 else if (dy_qushi_flag == "42V负载电流")
                                 {
                                     dataQueue_data.Enqueue(value_nums[3]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "42V负载电流/A";
-                                    this.chart2.Titles[0].Text = "42V负载电流 (-1A,78A)";
-                                    this.chart2.Series[0].LegendText = "42V负载电流";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "42V负载电流/A";
+                                    //this.chart2.Titles[0].Text = "42V负载电流 (-1A,78A)";
+                                    //this.chart2.Series[0].LegendText = "42V负载电流";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -2193,9 +2292,9 @@ namespace SatelliteSoftwareIF
                                 else if (dy_qushi_flag == "A组电池电压1")
                                 {
                                     dataQueue_data.Enqueue(value_nums[4]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "A组电池电压1/V";
-                                    this.chart2.Titles[0].Text = "A组电池电压1 (-0.5V,39V)";
-                                    this.chart2.Series[0].LegendText = "A组电池电压1";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "A组电池电压1/V";
+                                    //this.chart2.Titles[0].Text = "A组电池电压1 (-0.5V,39V)";
+                                    //this.chart2.Series[0].LegendText = "A组电池电压1";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -2402,9 +2501,9 @@ namespace SatelliteSoftwareIF
                                 else if (dy_qushi_flag == "B组电池电压1")
                                 {
                                     dataQueue_data.Enqueue(value_nums[5]);
-                                    this.chart2.ChartAreas[0].AxisY.Title = "B组电池电压1/V";
-                                    this.chart2.Titles[0].Text = "B组电池电压1 (-0.5V,39V)";
-                                    this.chart2.Series[0].LegendText = "B组电池电压1";
+                                    //this.chart2.ChartAreas[0].AxisY.Title = "B组电池电压1/V";
+                                    //this.chart2.Titles[0].Text = "B组电池电压1 (-0.5V,39V)";
+                                    //this.chart2.Series[0].LegendText = "B组电池电压1";
                                     if (a >= 0.5)
                                     {
                                         label_dy.Text = string.Format("故障");
@@ -2743,62 +2842,62 @@ namespace SatelliteSoftwareIF
             }
         }
 
-        private void chart2_SelectionRangeChanged(object sender, CursorEventArgs e)
-        {
-            //无数据时返回
-            if (chart2.Series[0].Points.Count == 0)
-                return;
+        //private void chart2_SelectionRangeChanged(object sender, CursorEventArgs e)
+        //{
+        //    //无数据时返回
+        //    if (chart2.Series[0].Points.Count == 0)
+        //        return;
 
-            double start_position = 0.0;
-            double end_position = 0.0;
-            double myInterval = 0.0;
-            start_position = e.NewSelectionStart;
-            end_position = e.NewSelectionEnd;
-            myInterval = Math.Abs(start_position - end_position);
-            if (myInterval == 0.0)
-                return;
+        //    double start_position = 0.0;
+        //    double end_position = 0.0;
+        //    double myInterval = 0.0;
+        //    start_position = e.NewSelectionStart;
+        //    end_position = e.NewSelectionEnd;
+        //    myInterval = Math.Abs(start_position - end_position);
+        //    if (myInterval == 0.0)
+        //        return;
 
-            //X轴视图起点
-            chart2.ChartAreas[0].AxisX.ScaleView.Position = Math.Min(start_position, end_position);
-            //X轴视图长度
-            chart2.ChartAreas[0].AxisX.ScaleView.Size = myInterval;
-            //X轴间隔
-            if (myInterval < 11.0)
-            {
-                chart2.ChartAreas[0].AxisX.Interval = 1;
-            }
-            else
-            {
-                chart2.ChartAreas[0].AxisY.Interval = Math.Floor(myInterval / 10);
-            }
-            flag2 = true;
-            if (!comboBox2.Items.Contains("Zoom"))
-            {
-                comboBox2.Items.Add("Zoom");
-                comboBox2.SelectedItem = "Zoom";
-            }
-        }
-        //局部放大后，恢复视图chart2
-        private void chart2_AxisScrollBarClicked(object sender, ScrollBarEventArgs e)
-        {
-            if (e.ButtonType == ScrollBarButtonType.ZoomReset)
-            {
-                chart2.ChartAreas[0].AxisX.Interval = 0;
-            }
-        }
+        //    //X轴视图起点
+        //    chart2.ChartAreas[0].AxisX.ScaleView.Position = Math.Min(start_position, end_position);
+        //    //X轴视图长度
+        //    chart2.ChartAreas[0].AxisX.ScaleView.Size = myInterval;
+        //    //X轴间隔
+        //    if (myInterval < 11.0)
+        //    {
+        //        chart2.ChartAreas[0].AxisX.Interval = 1;
+        //    }
+        //    else
+        //    {
+        //        chart2.ChartAreas[0].AxisY.Interval = Math.Floor(myInterval / 10);
+        //    }
+        //    flag2 = true;
+        //    if (!comboBox2.Items.Contains("Zoom"))
+        //    {
+        //        comboBox2.Items.Add("Zoom");
+        //        comboBox2.SelectedItem = "Zoom";
+        //    }
+        //}
+        ////局部放大后，恢复视图chart2
+        //private void chart2_AxisScrollBarClicked(object sender, ScrollBarEventArgs e)
+        //{
+        //    if (e.ButtonType == ScrollBarButtonType.ZoomReset)
+        //    {
+        //        chart2.ChartAreas[0].AxisX.Interval = 0;
+        //    }
+        //}
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox2.SelectedItem.ToString() == "Zoom")
-            {
-                flag2 = true;
-            }
-            else if (comboBox2.SelectedItem.ToString() == "OverView" || comboBox2.SelectedItem.ToString() == "Follow")
-            {
-                comboBox2.Items.Remove("Zoom");
-                flag2 = false;
-            }
-        }
+        //private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (comboBox2.SelectedItem.ToString() == "Zoom")
+        //    {
+        //        flag2 = true;
+        //    }
+        //    else if (comboBox2.SelectedItem.ToString() == "OverView" || comboBox2.SelectedItem.ToString() == "Follow")
+        //    {
+        //        comboBox2.Items.Remove("Zoom");
+        //        flag2 = false;
+        //    }
+        //}
         
 
         private void 故障诊断结果文件ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2850,13 +2949,13 @@ namespace SatelliteSoftwareIF
                 //this.chart1.Series[1].Points.AddXY((i + 1), dataQueue.ElementAt(i+1));
                 this.chart1.Series[0].Color = Color.Red;
             }
-            //####################chart2################################
-            this.chart2.Series[0].Points.Clear();
-            for (int i = 0; i < dataQueue_data_ST.Count; i++)
-            {
-                this.chart2.Series[0].Points.AddXY((i + 1), dataQueue_data_ST.ElementAt(i));
-                this.chart2.Series[0].Color = Color.Blue;
-            }
+            ////####################chart2################################
+            //this.chart2.Series[0].Points.Clear();
+            //for (int i = 0; i < dataQueue_data_ST.Count; i++)
+            //{
+            //    this.chart2.Series[0].Points.AddXY((i + 1), dataQueue_data_ST.ElementAt(i));
+            //    this.chart2.Series[0].Color = Color.Blue;
+            //}
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
@@ -3579,6 +3678,11 @@ namespace SatelliteSoftwareIF
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
         {
 
         }
